@@ -5,7 +5,8 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:component-scan base-package="dev.rest"/>
+    <context:component-scan base-package="dev.rest, auth.controllerr; auth.repository; auth.service; auth.rest"/>
+
     <mvc:annotation-driven/>
     <tx:annotation-driven/>
 
@@ -23,7 +24,7 @@
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-<!--        <property name="packagesToScan" value="dev.domain"/>-->
+        <property name="packagesToScan" value="auth.domain"/>
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
