@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/roles")
 public class RoleRestController {
 
     private RoleService roleService;
@@ -17,12 +18,12 @@ public class RoleRestController {
         this.roleService = roleService;
     }
 
-    @GetMapping("/roles")
+    @GetMapping
     public List<Role> getRoles() {
         return roleService.getAll();
     }
 
-    @PostMapping("/roles")
+    @PostMapping
     public String createUser(@RequestBody Role role) {
         roleService.create(role);
         return "Successful";

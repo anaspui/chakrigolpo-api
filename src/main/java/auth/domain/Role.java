@@ -38,8 +38,6 @@ public class Role {
 
     }
 
-// getters and setters
-
 
     public int  getRoleId() {
         return roleId;

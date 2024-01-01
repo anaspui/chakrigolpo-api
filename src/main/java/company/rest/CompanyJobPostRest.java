@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class CompanyJobPostRest {
 
     private final CompanyJobPostService companyJobPostService;
-@Autowired
+    @Autowired
     public CompanyJobPostRest(CompanyJobPostService companyJobPostService) {
         this.companyJobPostService = companyJobPostService;
     }

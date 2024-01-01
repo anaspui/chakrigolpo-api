@@ -6,17 +6,13 @@
 						http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd">
 
     <http auto-config="true">
-<!--        <intercept-url pattern="/applicant/**"-->
-<!--                       access="hasRole('ROLE_APPLICANT')" />-->
-<!--        <intercept-url pattern="/company/**"-->
-<!--&lt;!&ndash;                       access="hasRole('ROLE_COMPANY')" />&ndash;&gt;-->
-<!--        <intercept-url pattern="/register/**"-->
-<!--                       access="permitAll" />-->
-<!--        <intercept-url pattern="/**"-->
-<!--                       access="permitAll" />-->
-
-
+<!--        <intercept-url pattern="/company/**" access="hasRole('ROLE_COMPANY')" />-->
+<!--        <intercept-url pattern="/candidate/**" access="hasRole('ROLE_APPLICANT')" />-->
+<!--        <intercept-url pattern="/roles/**" access="permitAll" />-->
+<!--        <intercept-url pattern="/auth/**" access="permitAll" />-->
+<!--        <intercept-url pattern="/**" access="isAuthenticated()" />-->
     </http>
+
 
 
     <b:bean id="dataSource" class="com.mysql.cj.jdbc.MysqlDataSource">

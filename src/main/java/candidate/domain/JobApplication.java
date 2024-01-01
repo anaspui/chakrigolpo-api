@@ -27,9 +27,7 @@ public class JobApplication {
 
     @Column(name = "applied_at")
     private LocalDateTime appliedAt;
-    public JobApplication() {
-
-    }
+    public JobApplication() {}
 
     public JobApplication(JobSeeker jobSeeker, CompanyJobPost job, Status status, LocalDateTime appliedAt) {
         this.jobSeeker = jobSeeker;
@@ -37,9 +35,6 @@ public class JobApplication {
         this.status = status;
         this.appliedAt = appliedAt;
     }
-
-
-
     public int getApplicationId() {
         return applicationId;
     }
@@ -79,7 +74,7 @@ public class JobApplication {
     public void setAppliedAt(LocalDateTime appliedAt) {
         this.appliedAt = appliedAt;
     }
-// other fields, getters, and setters
+
 
     public enum Status {
         APPROVED, PENDING, REJECTED

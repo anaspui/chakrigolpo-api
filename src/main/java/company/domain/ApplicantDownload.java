@@ -30,7 +30,6 @@ public class ApplicantDownload {
     @Column(name = "download_at")
     private LocalDateTime downloadAt;
 
-    // other fields, getters, and setters
 
 
     public ApplicantDownload() {

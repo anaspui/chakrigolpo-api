@@ -19,18 +19,15 @@ public class CompanyService {
     }
 
     public Object create(Company company) {
-        // Use save method to persist the entity
         return companyRepository.create(company);
     }
 
 
     public Company findById(int companyId) {
-        // Use findById method to find the entity by its ID
         return companyRepository.findById(companyId);
     }
 
     public List<Company> getAll() {
-        // Use findAll method to get all entities
         return companyRepository.getAll();
     }
     public void delete(int id){

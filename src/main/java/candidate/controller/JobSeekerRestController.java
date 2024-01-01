@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 @RestController
+@RequestMapping("/candidate")
 public class JobSeekerRestController {
 
     @Autowired
@@ -31,7 +32,7 @@ public class JobSeekerRestController {
         this.jobSeekerService = jobSeekerService;
         this.userService = userService;
     }
-//
+
 //    @PostMapping("/jobseeker")
 //    public String createUser(@RequestBody JobSeeker jobSeeker) {
 //        jobSeekerService.create(jobSeeker);
@@ -39,7 +40,7 @@ public class JobSeekerRestController {
 //    }
 
 
-    @GetMapping("/jobseeker/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<JobSeeker> getUserById(@PathVariable int id) {
         JobSeeker user = jobSeekerService.findbyId(id);
 
@@ -50,7 +51,7 @@ public class JobSeekerRestController {
         }
     }
 
-    @PutMapping("/jobseeker")
+    @PutMapping
     public String updateUser(@RequestBody JobSeeker jobSeeker){
 
         jobSeekerService.update(jobSeeker);
@@ -65,7 +66,7 @@ public class JobSeekerRestController {
         return "Successful";
     }
 
-    @PostMapping("/jobseeker")
+    @PostMapping
     public String createUser(@RequestBody JobSeeker jobSeeker){
         jobSeeker.setProfilePicturePath("null");
         jobSeeker.setResumePath("null");

@@ -35,7 +35,6 @@ public class JobSeeker {
     @Column(name= "profile_picture_path")
     private String profilePicturePath;
 
-    // other fields, getters, and setters
 
     public int getJobSeekerId() {
         return jobSeekerId;
