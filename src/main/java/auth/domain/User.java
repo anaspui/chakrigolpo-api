@@ -19,6 +19,8 @@ public class User {
     @NotNull
     private String password;
 
+
+
     public User() {
 
     }
@@ -27,6 +29,8 @@ public class User {
         this.password = password;
 //        this.roles = roles;
     }
+
+
 
 
 

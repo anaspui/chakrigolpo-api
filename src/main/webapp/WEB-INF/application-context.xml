@@ -5,7 +5,7 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:component-scan base-package="auth.repository; auth.service; auth.rest; auth.domain; candidate.domain; candidate.service;candidate.repository;candidate.controller"/>
+    <context:component-scan base-package="auth.repository; auth.service; auth.rest; auth.domain; candidate.domain; candidate.service;candidate.repository;candidate.controller; company.rest;company.repository;company.service; company.domain"/>
 
     <mvc:annotation-driven/>
     <tx:annotation-driven/>
@@ -30,13 +30,10 @@
     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- Set the maximum allowed size (in bytes) for each file upload -->
-        <property name="maxUploadSize" value="10485760" /> <!-- 10MB -->
 
-        <!-- Set the maximum allowed size (in bytes) for the entire request -->
-        <property name="maxInMemorySize" value="4096" /> <!-- 4KB -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="10485760" />
+        <property name="maxInMemorySize" value="4096" />
     </bean>
 
-    <!--<bean id="fc" class="dev.controller.UserController"/>-->
 </beans>

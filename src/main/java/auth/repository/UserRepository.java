@@ -51,8 +51,6 @@ public class UserRepository {
         Session session = sessionFactory.getCurrentSession();
         Query<User> query = session.createQuery("FROM User WHERE username = :username", User.class);
         query.setParameter("username", username);
-
-        // Use uniqueResult() instead of get() because username is not the primary key
         return query.uniqueResult();
     }
 

@@ -10,11 +10,12 @@ public class CompanyJobPost {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "job_id")
     private int jobId;
 
-    @ManyToOne
-    @JoinColumn(name = "company_id")
-    private Company company;
+//    @ManyToOne
+//    @JoinColumn(name = "company_id")
+//    private Company company;
 
     @Column(name = "job_title")
     private String jobTitle;
@@ -30,13 +31,13 @@ public class CompanyJobPost {
     public CompanyJobPost() {
 
     }
-    public CompanyJobPost(Company company, String jobTitle, String jobDescription, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.company = company;
-        this.jobTitle = jobTitle;
-        this.jobDescription = jobDescription;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
+//    public CompanyJobPost(Company company, String jobTitle, String jobDescription, LocalDateTime createdAt, LocalDateTime updatedAt) {
+//        this.company = company;
+//        this.jobTitle = jobTitle;
+//        this.jobDescription = jobDescription;
+//        this.createdAt = createdAt;
+//        this.updatedAt = updatedAt;
+//    }
 
 
 
@@ -48,13 +49,13 @@ public class CompanyJobPost {
         this.jobId = jobId;
     }
 
-    public Company getCompany() {
-        return company;
-    }
+//    public Company getCompany() {
+//        return company;
+//    }
 
-    public void setCompany(Company company) {
-        this.company = company;
-    }
+//    public void setCompany(Company company) {
+//        this.company = company;
+//    }
 
     public String getJobTitle() {
         return jobTitle;
@@ -92,7 +93,6 @@ public class CompanyJobPost {
     public String toString() {
         return "CompanyJobPost{" +
                 "jobId=" + jobId +
-                ", company=" + company +
                 ", jobTitle='" + jobTitle + '\'' +
                 ", jobDescription='" + jobDescription + '\'' +
                 ", createdAt=" + createdAt +

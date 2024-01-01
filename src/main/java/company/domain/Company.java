@@ -11,6 +11,7 @@ public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "company_id")
     private int companyId;
 
     @OneToOne
@@ -25,21 +26,27 @@ public class Company {
     @Column(name="closing_time")
     private Date closingTime;
 
-    @OneToMany(mappedBy = "company")
-    private Set<CompanyJobPost> jobPosts;
+//    @OneToMany(mappedBy = "company")
+//    private Set<CompanyJobPost> jobPosts;
 
     // other fields, getters, and setters
 
     public Company() {
     }
 
-    public Company(User user, String companyName, String industry, Date closingTime, Set<CompanyJobPost> jobPosts) {
-        this.user = user;
-        this.companyName = companyName;
-        this.industry = industry;
-        this.closingTime = closingTime;
-        this.jobPosts = jobPosts;
-    }
+//    public Company(User user, String companyName, String industry, Date closingTime, Set<CompanyJobPost> jobPosts) {
+//        this.user = user;
+//        this.companyName = companyName;
+//        this.industry = industry;
+//        this.closingTime = closingTime;
+//        this.jobPosts = jobPosts;
+//    }
+public Company(User user, String companyName, String industry, Date closingTime) {
+    this.user = user;
+    this.companyName = companyName;
+    this.industry = industry;
+    this.closingTime = closingTime;
+}
 
     public int getCompanyId() {
         return companyId;
@@ -81,13 +88,13 @@ public class Company {
         this.closingTime = closingTime;
     }
 
-    public Set<CompanyJobPost> getJobPosts() {
-        return jobPosts;
-    }
-
-    public void setJobPosts(Set<CompanyJobPost> jobPosts) {
-        this.jobPosts = jobPosts;
-    }
+//    public Set<CompanyJobPost> getJobPosts() {
+//        return jobPosts;
+//    }
+//
+//    public void setJobPosts(Set<CompanyJobPost> jobPosts) {
+//        this.jobPosts = jobPosts;
+//    }
 
     @Override
     public String toString() {
@@ -97,7 +104,6 @@ public class Company {
                 ", companyName='" + companyName + '\'' +
                 ", industry='" + industry + '\'' +
                 ", closingTime=" + closingTime +
-                ", jobPosts=" + jobPosts +
                 '}';
     }
 }

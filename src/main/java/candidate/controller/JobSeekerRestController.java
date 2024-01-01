@@ -37,6 +37,8 @@ public class JobSeekerRestController {
 //        jobSeekerService.create(jobSeeker);
 //        return "Successful";
 //    }
+
+
     @GetMapping("/jobseeker/{id}")
     public ResponseEntity<JobSeeker> getUserById(@PathVariable int id) {
         JobSeeker user = jobSeekerService.findbyId(id);
