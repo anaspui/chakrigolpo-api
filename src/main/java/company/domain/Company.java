@@ -1,6 +1,7 @@
 package company.domain;
 
 import auth.domain.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -26,27 +27,31 @@ public class Company {
     @Column(name="closing_time")
     private Date closingTime;
 
-//    @OneToMany(mappedBy = "company")
-//    private Set<CompanyJobPost> jobPosts;
 
-    // other fields, getters, and setters
+    @JsonIgnore
+    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private Set<CompanyJobPost> jobPosts;
+
+
+
+
 
     public Company() {
     }
 
-//    public Company(User user, String companyName, String industry, Date closingTime, Set<CompanyJobPost> jobPosts) {
-//        this.user = user;
-//        this.companyName = companyName;
-//        this.industry = industry;
-//        this.closingTime = closingTime;
-//        this.jobPosts = jobPosts;
-//    }
-public Company(User user, String companyName, String industry, Date closingTime) {
-    this.user = user;
-    this.companyName = companyName;
-    this.industry = industry;
-    this.closingTime = closingTime;
-}
+    public Company(User user, String companyName, String industry, Date closingTime, Set<CompanyJobPost> jobPosts) {
+        this.user = user;
+        this.companyName = companyName;
+        this.industry = industry;
+        this.closingTime = closingTime;
+        this.jobPosts = jobPosts;
+    }
+//public Company(User user, String companyName, String industry, Date closingTime) {
+//    this.user = user;
+//    this.companyName = companyName;
+//    this.industry = industry;
+//    this.closingTime = closingTime;
+//}
 
     public int getCompanyId() {
         return companyId;
@@ -88,13 +93,13 @@ public Company(User user, String companyName, String industry, Date closingTime)
         this.closingTime = closingTime;
     }
 
-//    public Set<CompanyJobPost> getJobPosts() {
-//        return jobPosts;
-//    }
-//
-//    public void setJobPosts(Set<CompanyJobPost> jobPosts) {
-//        this.jobPosts = jobPosts;
-//    }
+    public Set<CompanyJobPost> getJobPosts() {
+        return jobPosts;
+    }
+
+    public void setJobPosts(Set<CompanyJobPost> jobPosts) {
+        this.jobPosts = jobPosts;
+    }
 
     @Override
     public String toString() {
@@ -104,6 +109,7 @@ public Company(User user, String companyName, String industry, Date closingTime)
                 ", companyName='" + companyName + '\'' +
                 ", industry='" + industry + '\'' +
                 ", closingTime=" + closingTime +
+                ", jobPosts=" + jobPosts +
                 '}';
     }
 }
