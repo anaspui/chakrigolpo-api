@@ -84,7 +84,13 @@
           <version>RELEASE</version>
           <scope>compile</scope>
       </dependency>
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.4</version> <!-- Use the version appropriate for your project -->
+    </dependency>
   </dependencies>
+
   <build>
     <finalName>ChakriGolpo</finalName>
   </build>
