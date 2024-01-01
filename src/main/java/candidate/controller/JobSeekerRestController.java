@@ -48,6 +48,21 @@ public class JobSeekerRestController {
         }
     }
 
+    @PutMapping("/jobseeker")
+    public String updateUser(@RequestBody JobSeeker jobSeeker){
+
+        jobSeekerService.update(jobSeeker);
+
+        return "Successful";
+    }
+    @DeleteMapping("/jobseeker/{id}")
+    public String deleteUser(@PathVariable int id){
+
+        jobSeekerService.deleteUser(id);
+
+        return "Successful";
+    }
+
     @PostMapping("/jobseeker")
     public String createUser(@RequestBody JobSeeker jobSeeker){
         jobSeeker.setProfilePicturePath("null");

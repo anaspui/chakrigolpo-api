@@ -33,4 +33,9 @@ public class JobSeekerRepository {
         Session session = sessionFactory.getCurrentSession();
         return session.get(JobSeeker.class, id);
     }
+    public void deleteById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        JobSeeker user = getOne(id);
+        session.delete(user);
+    }
 }

@@ -19,6 +19,10 @@ public class UserService{
         this.userRepository = userRepository;
     }
 
+    public void updateUser(User user){
+        this.userRepository.edit(user);
+    }
+
 
     public Object create(User user) {
         return userRepository.create(user);
@@ -40,4 +44,7 @@ public class UserService{
     }
 
 
+    public void delete(int id) {
+        this.userRepository.delete(id);
+    }
 }

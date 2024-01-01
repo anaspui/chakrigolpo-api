@@ -32,4 +32,7 @@ public class JobSeekerService {
     public JobSeeker getOne(int id){
         return jobSeekerRepository.getOne(id);
     }
+    public void deleteUser(int id) {
+        jobSeekerRepository.deleteById(id);
+    }
 }
