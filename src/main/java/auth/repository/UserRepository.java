@@ -4,11 +4,10 @@ import auth.domain.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.*;
 import java.util.List;
-import java.util.Queue;
 
 @Repository
 public class UserRepository {
@@ -19,9 +18,10 @@ public class UserRepository {
         this.sessionFactory = sessionFactory;
     }
 
-    public User save(User user) {
+    public Object create(User user) {
         Session session = sessionFactory.getCurrentSession();
-        return (User) session.save(user);
+        Object sa = session.save(user);
+        return sa;
 
     }
 
@@ -39,7 +39,6 @@ public class UserRepository {
     public List<User> getAll() {
         Session session = sessionFactory.getCurrentSession();
         Query<User> userQuery = session.createQuery("from User", User.class);
-        System.out.println(userQuery);
         return userQuery.getResultList();
     }
 
@@ -50,6 +49,11 @@ public class UserRepository {
 
     public User findByUsername(String username) {
         Session session = sessionFactory.getCurrentSession();
-        return session.get(User.class, username);
+        Query<User> query = session.createQuery("FROM User WHERE username = :username", User.class);
+        query.setParameter("username", username);
+
+        // Use uniqueResult() instead of get() because username is not the primary key
+        return query.uniqueResult();
     }
+
 }

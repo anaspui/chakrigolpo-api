@@ -26,7 +26,8 @@ public class Role {
             inverseJoinColumns = {
                     @JoinColumn(name = "user_id")
             }
-    )private List<User> users;
+    )
+    private List<User> users;
 
     public Role(int roleId, String roleName) {
         this.roleId = roleId;

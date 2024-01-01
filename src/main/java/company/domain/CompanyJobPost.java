@@ -5,29 +5,46 @@ import company.domain.Company;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name= "company_job_post")
 public class CompanyJobPost {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long jobId;
+    private int jobId;
 
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
 
+    @Column(name = "job_title")
     private String jobTitle;
+
+    @Column(name = "job_description")
     private String jobDescription;
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     // other fields, getters, and setters
+    public CompanyJobPost() {
 
-    public Long getJobId() {
+    }
+    public CompanyJobPost(Company company, String jobTitle, String jobDescription, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.company = company;
+        this.jobTitle = jobTitle;
+        this.jobDescription = jobDescription;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+
+
+    public int getJobId() {
         return jobId;
     }
 
-    public void setJobId(Long jobId) {
+    public void setJobId(int jobId) {
         this.jobId = jobId;
     }
 
@@ -69,5 +86,17 @@ public class CompanyJobPost {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "CompanyJobPost{" +
+                "jobId=" + jobId +
+                ", company=" + company +
+                ", jobTitle='" + jobTitle + '\'' +
+                ", jobDescription='" + jobDescription + '\'' +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
     }
 }

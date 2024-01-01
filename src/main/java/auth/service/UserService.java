@@ -20,8 +20,8 @@ public class UserService{
     }
 
 
-    public User saveUser(User user) {
-        return userRepository.save(user);
+    public Object create(User user) {
+        return userRepository.create(user);
     }
 
 
@@ -35,7 +35,9 @@ public class UserService{
     }
 
 
-    public List<User> getAllUsers() {
+    public List<User> getAll() {
         return userRepository.getAll();
     }
+
+
 }

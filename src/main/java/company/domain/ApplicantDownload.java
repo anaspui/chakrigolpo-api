@@ -7,12 +7,12 @@ import company.domain.CompanyJobPost;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name="applicant_download")
 public class ApplicantDownload {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long downloadId;
+    private int downloadId;
 
     @ManyToOne
     @JoinColumn(name = "company_id")
@@ -26,15 +26,27 @@ public class ApplicantDownload {
     @JoinColumn(name = "job_seeker_id")
     private JobSeeker jobSeeker;
 
+    @Column(name = "download_at")
     private LocalDateTime downloadAt;
 
     // other fields, getters, and setters
 
-    public Long getDownloadId() {
+
+    public ApplicantDownload() {
+    }
+
+    public ApplicantDownload(Company company, CompanyJobPost job, JobSeeker jobSeeker, LocalDateTime downloadAt) {
+        this.company = company;
+        this.job = job;
+        this.jobSeeker = jobSeeker;
+        this.downloadAt = downloadAt;
+    }
+
+    public int getDownloadId() {
         return downloadId;
     }
 
-    public void setDownloadId(Long downloadId) {
+    public void setDownloadId(int downloadId) {
         this.downloadId = downloadId;
     }
 
@@ -68,5 +80,16 @@ public class ApplicantDownload {
 
     public void setDownloadAt(LocalDateTime downloadAt) {
         this.downloadAt = downloadAt;
+    }
+
+    @Override
+    public String toString() {
+        return "ApplicantDownload{" +
+                "downloadId=" + downloadId +
+                ", company=" + company +
+                ", job=" + job +
+                ", jobSeeker=" + jobSeeker +
+                ", downloadAt=" + downloadAt +
+                '}';
     }
 }

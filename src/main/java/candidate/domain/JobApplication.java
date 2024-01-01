@@ -5,12 +5,13 @@ import company.domain.CompanyJobPost;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "job_application")
 public class JobApplication {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long applicationId;
+    @Column(name = "application_id")
+    private int applicationId;
 
     @ManyToOne
     @JoinColumn(name = "job_seeker_id")
@@ -21,15 +22,29 @@ public class JobApplication {
     private CompanyJobPost job;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private Status status;
 
+    @Column(name = "applied_at")
     private LocalDateTime appliedAt;
+    public JobApplication() {
 
-    public Long getApplicationId() {
+    }
+
+    public JobApplication(JobSeeker jobSeeker, CompanyJobPost job, Status status, LocalDateTime appliedAt) {
+        this.jobSeeker = jobSeeker;
+        this.job = job;
+        this.status = status;
+        this.appliedAt = appliedAt;
+    }
+
+
+
+    public int getApplicationId() {
         return applicationId;
     }
 
-    public void setApplicationId(Long applicationId) {
+    public void setApplicationId(int applicationId) {
         this.applicationId = applicationId;
     }
 
@@ -68,5 +83,16 @@ public class JobApplication {
 
     public enum Status {
         APPROVED, PENDING, REJECTED
+    }
+
+    @Override
+    public String toString() {
+        return "JobApplication{" +
+                "applicationId=" + applicationId +
+                ", jobSeeker=" + jobSeeker +
+                ", job=" + job +
+                ", status=" + status +
+                ", appliedAt=" + appliedAt +
+                '}';
     }
 }
