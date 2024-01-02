@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
 @RestController
 @RequestMapping("/company/job-post")
 public class CompanyJobPostRest {
@@ -15,6 +17,12 @@ public class CompanyJobPostRest {
     @Autowired
     public CompanyJobPostRest(CompanyJobPostService companyJobPostService) {
         this.companyJobPostService = companyJobPostService;
+    }
+
+    @GetMapping
+    public List<CompanyJobPost> getall() {
+        return companyJobPostService.getAll();
+
     }
 
     @PostMapping("/add")

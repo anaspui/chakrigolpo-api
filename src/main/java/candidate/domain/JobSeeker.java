@@ -3,6 +3,7 @@ package candidate.domain;
 import auth.domain.User;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity(name = "job_seeker")
 public class JobSeeker {
@@ -25,10 +26,13 @@ public class JobSeeker {
     private User user;
 
     @Column(name= "full_name")
+    @NotNull
     private String fullName;
     @Column(name= "biography")
+    @NotNull
     private String biography;
     @Column(name= "cover_letter_path")
+
     private String coverLetterPath;
     @Column(name= "resume_path")
     private String resumePath;

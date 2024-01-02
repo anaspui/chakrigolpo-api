@@ -4,6 +4,7 @@ import auth.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Set;
 
@@ -21,8 +22,10 @@ public class Company {
 
 
     @Column(name="company_name")
+    @NotNull
     private String companyName;
     @Column(name = "industry")
+    @NotNull
     private String industry;
     @Column(name="closing_time")
     private Date closingTime;

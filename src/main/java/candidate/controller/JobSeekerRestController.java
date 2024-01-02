@@ -58,7 +58,7 @@ public class JobSeekerRestController {
 
         return "Successful";
     }
-    @DeleteMapping("/jobseeker/{id}")
+    @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable int id){
 
         jobSeekerService.deleteUser(id);

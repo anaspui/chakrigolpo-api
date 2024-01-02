@@ -3,6 +3,7 @@ package company.domain;
 import company.domain.Company;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity(name= "company_job_post")
@@ -18,9 +19,11 @@ public class CompanyJobPost {
     private Company company;
 
     @Column(name = "job_title")
+    @NotNull
     private String jobTitle;
 
     @Column(name = "job_description")
+    @NotNull
     private String jobDescription;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
