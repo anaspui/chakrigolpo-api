@@ -24,7 +24,7 @@ public class UserService{
     }
 
 
-    public Object create(User user) {
+    public Object create(User user) throws SQLException, ClassNotFoundException {
         return userRepository.create(user);
     }
 

@@ -3,6 +3,8 @@ package candidate.domain;
 import company.domain.CompanyJobPost;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.time.LocalDateTime;
 
 @Entity(name = "job_application")
@@ -26,6 +28,8 @@ public class JobApplication {
     private Status status;
 
     @Column(name = "applied_at")
+    @Past(message = "Applied Date must be in the past")
+    @NotNull(message = "Applied Date Cannot be Null")
     private LocalDateTime appliedAt;
     public JobApplication() {}
 

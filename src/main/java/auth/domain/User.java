@@ -2,6 +2,7 @@ package auth.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -13,10 +14,12 @@ public class User {
     @Column(name = "user_id")
     private int userId;
     @Column(name = "username")
+    @Size(min = 4, message = "Username must be atleast 4 Characters")
     @NotNull
     private String username;
     @Column(name = "password")
     @NotNull
+    @Size(min = 8, message = "Password must be more than 8 Characters")
     private String password;
 
 

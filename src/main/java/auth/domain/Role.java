@@ -14,7 +14,7 @@ public class Role {
     @Column(name = "role_id")
     private int  roleId;
     @Column(name = "role_name")
-    @NotNull
+    @NotNull(message = "Role Name Cannot Be Null")
     private String roleName;
 
     @ManyToMany(fetch = FetchType.EAGER)

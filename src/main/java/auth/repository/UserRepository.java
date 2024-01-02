@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -18,7 +19,7 @@ public class UserRepository {
         this.sessionFactory = sessionFactory;
     }
 
-    public Object create(User user) {
+    public Object create(User user)throws SQLException, ClassNotFoundException {
         Session session = sessionFactory.getCurrentSession();
         Object sa = session.save(user);
         return sa;

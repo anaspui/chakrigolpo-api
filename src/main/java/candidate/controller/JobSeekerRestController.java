@@ -9,11 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -50,13 +53,39 @@ public class JobSeekerRestController {
             return ResponseEntity.notFound().build();
         }
     }
+    @PostMapping
+    public String createUser(@Valid @RequestBody JobSeeker jobSeeker, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            StringBuilder errorResponse = new StringBuilder("Validation error(s): ");
+            bindingResult.getAllErrors().forEach(error -> errorResponse.append(error.getDefaultMessage()).append("; "));
+            return "Error: " +errorResponse;
+        }
 
-    @PutMapping
-    public String updateUser(@RequestBody JobSeeker jobSeeker){
+        try {
+        jobSeeker.setProfilePicturePath("null");
+        jobSeeker.setResumePath("null");
+        jobSeeker.setCoverLetterPath("null");
 
-        jobSeekerService.update(jobSeeker);
+        jobSeekerService.create(jobSeeker);
 
         return "Successful";
+        } catch (Exception e) {
+            return "An error occurred";
+        }
+    }
+    @PutMapping
+    public String updateUser(@Valid @RequestBody JobSeeker jobSeeker, BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            StringBuilder errorResponse = new StringBuilder("Validation error(s): ");
+            bindingResult.getAllErrors().forEach(error -> errorResponse.append(error.getDefaultMessage()).append("; "));
+            return "Error: " +errorResponse;
+        }
+        try{
+            jobSeekerService.update(jobSeeker);
+            return "Successful";
+        }catch (Exception e){
+            return "An error occurred";
+        }
     }
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable int id){
@@ -65,20 +94,6 @@ public class JobSeekerRestController {
 
         return "Successful";
     }
-
-    @PostMapping
-    public String createUser(@RequestBody JobSeeker jobSeeker){
-        jobSeeker.setProfilePicturePath("null");
-        jobSeeker.setResumePath("null");
-        jobSeeker.setCoverLetterPath("null");
-
-        jobSeekerService.create(jobSeeker);
-
-        return "Successful";
-    }
-
-
-
 
     @PostMapping("/upload/resume")
     public String uploadResume(@RequestParam("file") MultipartFile resumeFile,

@@ -26,13 +26,12 @@ public class JobSeeker {
     private User user;
 
     @Column(name= "full_name")
-    @NotNull
+    @NotNull(message = "Full name Cannot Be Null")
     private String fullName;
     @Column(name= "biography")
-    @NotNull
+    @NotNull(message = "Candidates Bio Cannot Be Null")
     private String biography;
     @Column(name= "cover_letter_path")
-
     private String coverLetterPath;
     @Column(name= "resume_path")
     private String resumePath;
