@@ -16,14 +16,15 @@ public class CompanyJobPost {
 
     @ManyToOne
     @JoinColumn(name = "company_id")
+    @NotNull(message = "Only Companies can post jobs!")
     private Company company;
 
     @Column(name = "job_title")
-    @NotNull
+    @NotNull(message = "Title cannot be null")
     private String jobTitle;
 
     @Column(name = "job_description")
-    @NotNull
+    @NotNull(message = "Job must have a description")
     private String jobDescription;
     @Column(name = "created_at")
     private LocalDateTime createdAt;

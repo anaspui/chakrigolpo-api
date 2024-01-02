@@ -4,9 +4,12 @@ import auth.domain.User;
 import company.domain.Company;
 import company.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,9 +26,19 @@ public class CompanyRestController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addCompany(@RequestBody Company company) {
+    public ResponseEntity<String> addCompany(@Valid @RequestBody Company company, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            StringBuilder errorResponse = new StringBuilder("Validation error(s): ");
+            bindingResult.getAllErrors().forEach(error -> errorResponse.append(error.getDefaultMessage()).append("; "));
+            return ResponseEntity.badRequest().body(errorResponse.toString());
+        }
+
+        try {
         Object newCompany= companyService.create(company);
         return ResponseEntity.ok("Company: " + newCompany.toString());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred");
+        }
     }
 //Mapping error
 //    @GetMapping("/all")

@@ -5,6 +5,7 @@ import company.domain.Company;
 import company.domain.CompanyJobPost;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity(name="applicant_download")
@@ -13,6 +14,7 @@ public class ApplicantDownload {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "download_id")
+    @NotNull
     private int downloadId;
 
 //    @ManyToOne
@@ -28,6 +30,7 @@ public class ApplicantDownload {
 //    private JobSeeker jobSeeker;
 
     @Column(name = "download_at")
+    @NotNull
     private LocalDateTime downloadAt;
 
 

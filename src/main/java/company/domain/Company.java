@@ -18,14 +18,15 @@ public class Company {
 
     @OneToOne
     @JoinColumn(name = "user_id")
+    @NotNull(message = "A user must be assigned to the Company")
     private User user;
 
 
     @Column(name="company_name")
-    @NotNull
+    @NotNull(message = "Company Name cannot be Null")
     private String companyName;
     @Column(name = "industry")
-    @NotNull
+    @NotNull(message = "Industry cannot be null")
     private String industry;
     @Column(name="closing_time")
     private Date closingTime;
