@@ -4,6 +4,7 @@ import company.domain.Company;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.time.LocalDateTime;
 
 @Entity(name= "company_job_post")
@@ -27,6 +28,7 @@ public class CompanyJobPost {
     @NotNull(message = "Job must have a description")
     private String jobDescription;
     @Column(name = "created_at")
+    @Past(message = "Please select a valid date")
     private LocalDateTime createdAt;
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
