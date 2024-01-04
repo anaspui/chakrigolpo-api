@@ -18,13 +18,13 @@ import java.util.List;
 public class CompanyJobPostRest {
 
     private final CompanyJobPostService companyJobPostService;
-    private final JobSeekerService jobSeekerService;
+
 
     @Autowired
-    public CompanyJobPostRest(CompanyJobPostService companyJobPostService, JobSeekerService jobSeekerService) {
+    public CompanyJobPostRest(CompanyJobPostService companyJobPostService) {
         this.companyJobPostService = companyJobPostService;
 
-        this.jobSeekerService = jobSeekerService;
+
     }
 
     @GetMapping
@@ -81,8 +81,5 @@ public class CompanyJobPostRest {
         }
     }
 
-    @GetMapping("viewCandidate/{id}")
-    public JobSeeker getJob(@PathVariable("id") int id){
-        return this.jobSeekerService.getOne(id);
-    }
+
 }

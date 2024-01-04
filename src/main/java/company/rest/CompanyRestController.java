@@ -1,6 +1,7 @@
 package company.rest;
 
-import auth.domain.User;
+import candidate.domain.JobSeeker;
+import candidate.service.JobSeekerService;
 import company.domain.Company;
 import company.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +11,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/company")
 public class CompanyRestController {
 
     private final CompanyService companyService;
+    private final JobSeekerService jobSeekerService;
 
     @Autowired
-    public CompanyRestController(CompanyService companyService) {
+    public CompanyRestController(CompanyService companyService, JobSeekerService jobSeekerService) {
         this.companyService = companyService;
+        this.jobSeekerService = jobSeekerService;
     }
 
     @PostMapping("/add")
@@ -67,6 +67,9 @@ public class CompanyRestController {
 
         return "Deleted";
     }
-
+    @GetMapping("viewCandidate/{id}")
+    public JobSeeker getJob(@PathVariable("id") int id){
+        return this.jobSeekerService.getOne(id);
+    }
 
 }
