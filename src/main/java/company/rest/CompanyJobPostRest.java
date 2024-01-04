@@ -1,6 +1,7 @@
 package company.rest;
 
-import company.domain.Company;
+import candidate.domain.JobSeeker;
+import candidate.service.JobSeekerService;
 import company.domain.CompanyJobPost;
 import company.service.CompanyJobPostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,13 @@ import java.util.List;
 public class CompanyJobPostRest {
 
     private final CompanyJobPostService companyJobPostService;
+    private final JobSeekerService jobSeekerService;
+
     @Autowired
-    public CompanyJobPostRest(CompanyJobPostService companyJobPostService) {
+    public CompanyJobPostRest(CompanyJobPostService companyJobPostService, JobSeekerService jobSeekerService) {
         this.companyJobPostService = companyJobPostService;
+
+        this.jobSeekerService = jobSeekerService;
     }
 
     @GetMapping
@@ -74,5 +79,10 @@ public class CompanyJobPostRest {
         {
             return "An Error Occurred";
         }
+    }
+
+    @GetMapping("viewCandidate/{id}")
+    public JobSeeker getJob(@PathVariable("id") int id){
+        return this.jobSeekerService.getOne(id);
     }
 }
